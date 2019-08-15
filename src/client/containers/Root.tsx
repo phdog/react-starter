@@ -35,11 +35,11 @@ class Root extends React.Component<IConnectedProps, IState> {
                 onClick={this.handleClick}
                 actionClick={this.props.testAction}
                 css={this.props.css}
+                routing={{to: '/test', text: 'Test'}}
             />
         );
     }
 }
-
 
 const mapStateToProps = (state: IConnectedProps) => ({
     css: state.css,
