@@ -1,7 +1,7 @@
 {
   "name": "ReactBoilerplateProject",
   "version": "1.0.0",
-  "description": "React/Redux TypeScript HMR SSR boilerplate",
+  "description": "React/Redux TypeScript HMR SSR CodeSplit boilerplate",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./server.dev.js",

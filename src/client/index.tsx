@@ -6,7 +6,7 @@ import { AppContainer } from 'react-hot-loader';
 import 'url-search-params-polyfill';
 import './styles/base.scss';
 import Routes from './routes';
-import {TMarkUp} from 'constants/types';
+import {TMarkUp} from './constants/types';
 
 const Components = <Routes/>;
 const render = (Components: TMarkUp) => ReactDOM.render(

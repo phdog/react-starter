@@ -18,10 +18,9 @@ const server = http.createServer(app);
 
 app.use(webpackDevMiddleware);
 app.use(webpackHotMiddleware);
-//app.use(staticMiddleware);
+app.use(staticMiddleware);
 
 app.all(['*'], (req, res, next) => {
-  console.log(INDEX, 'index')
     res.sendFile(INDEX);
   });
 
