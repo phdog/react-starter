@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+      "module": "es6",
+      "target": "es6",
+      "lib": ["dom"],
+      "allowJs": true,
+      "jsx": "react",
+      "declaration": false,
+      "declarationMap": false,
+      "sourceMap": true,
+      "outDir": "./dist",
+      "noEmitOnError": true,
+      "strict": true,
+      "noImplicitAny": false,
+      "strictNullChecks": true,
+       "baseUrl": "src",
+      "rootDirs": ["src"],
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
+  }
+  

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon ./server.dev.js",
     "start:ssr": "nodemon --watch config --watch server.dev.js ./server.prod.js",
-    "build": "rimraf dist && webpack --config=config/webpack.prod.js"
+    "build": "rimraf dist && webpack --config=config/webpack.prod.js",
+    "storybook": "start-storybook -p 6006 -c .storybook"
   },
   "keywords": [],
   "author": "",
@@ -36,6 +37,8 @@
   },
   "devDependencies": {
     "@hot-loader/react-dom": "^16.8.6",
+    "@storybook/addon-info": "^5.1.11",
+    "@storybook/react": "^5.1.11",
     "@types/history": "^4.7.2",
     "@types/i18next": "^12.1.0",
     "@types/localforage": "0.0.34",
@@ -55,6 +58,8 @@
     "@types/redux-thunk": "^2.1.0",
     "@types/reselect": "^2.2.0",
     "@types/revalidate": "^1.1.2",
+    "@types/storybook__react": "^4.0.2",
+    "babel-loader": "^8.0.6",
     "compression-webpack-plugin": "^3.0.0",
     "css-loader": "^2.1.1",
     "css-modules-typescript-loader": "^2.0.3",
@@ -68,6 +73,8 @@
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "react-docgen-typescript-loader": "^3.1.1",
+    "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "react-hot-loader": "^4.8.8",
     "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
