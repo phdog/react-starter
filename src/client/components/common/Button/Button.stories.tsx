@@ -4,8 +4,14 @@ import Button from './index';
 
 storiesOf('Button', module)
     .add('Simple', () => (
-        <Button>Simple</Button>
+        <Button color="hotpink">Press me</Button>
     ))
     .add('With color props on hover', () => (
-        <Button color="green">Hover me</Button>
+        <Button color="hotpink">Press me</Button>
+    ))
+    .add('disabled', () => (
+        <Button color="hotpink" disabled>Press me</Button>
+    ))
+    .add('loading', () => (
+        <Button color="hotpink" loading>Press me</Button>
     ))
