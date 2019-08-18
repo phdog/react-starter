@@ -18,6 +18,8 @@ const Button: React.SFC<IButton> = ({disabled, loading, color, onClick, children
 
     const textVisibility = loading ? 'hidden' : 'visible';
     const textColor = 'white';
+    const cursor = loading ? 'default' : 'pointer';
+    const shouldNotTransform = loading || disabled;
 
     return (
         <button
@@ -38,17 +40,15 @@ const Button: React.SFC<IButton> = ({disabled, loading, color, onClick, children
             &:active {
                 outline: none;
                 border: none;
+                filter: ${loading ? 'none' : 'contrast(150%)'};
+                transform: ${shouldNotTransform ? 'none' : 'scale3d(1.03, 1.03, 1)'};
             }
             &:hover {
-                cursor: pointer;
+                cursor: ${cursor};
             }
             &:disabled {
-                opacity: 0.8;
+                filter: contrast(80%);
                 cursor: default;
-
-                & * {
-                    opacity: 1;
-                }
             }
         `}
     >

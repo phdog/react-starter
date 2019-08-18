@@ -3,10 +3,7 @@ import {storiesOf} from '@storybook/react';
 import Button from './index';
 
 storiesOf('Button', module)
-    .add('Simple', () => (
-        <Button color="hotpink">Press me</Button>
-    ))
-    .add('With color props on hover', () => (
+    .add('idle', () => (
         <Button color="hotpink">Press me</Button>
     ))
     .add('disabled', () => (
