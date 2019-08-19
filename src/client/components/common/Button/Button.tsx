@@ -2,65 +2,156 @@
 import { css, jsx } from '@emotion/core';
 import React from 'react';
 import Loader from 'client/components/common/Loader/index';
-import { ESize } from 'client/constants/enums/ui';
 
 interface IButton {
     disabled?: boolean;
     loading?: boolean;
+    active?: boolean;
+    inverted?: boolean;
+    inline?: boolean;
+    color: {
+        text: string;
+        background: string;
+        hover: string;
+        disabled: string;
+        active: string
+    };
     onClick?: () => void;
-    size?: ESize;
-    color?: string;
     css?: any;
 }
 
+const Button: React.SFC<IButton> = ({
+    disabled, loading, active, inverted, inline, color, onClick, children }) => {
 
-const Button: React.SFC<IButton> = ({disabled, loading, color, onClick, children}) => {
+    const isMinimal = inverted || inline;
+    const borderWidth = 1;
+    const hPadding = 8;
+    const vPadding = 16;
 
-    const textVisibility = loading ? 'hidden' : 'visible';
-    const textColor = 'white';
-    const cursor = loading ? 'default' : 'pointer';
-    const shouldNotTransform = loading || disabled;
+    const baseColor = () => {
+        if (isMinimal) {
+            if (active) {
+                return color.active;
+            }
+            return color.background;
+        }
+        return color.text;
+    };
+
+    const baseBackground = () => {
+        if (isMinimal) {
+            return color.text;
+        }
+        if (active) {
+            return color.active;
+        }
+        return color.background;
+    };
+
+    const baseBorder = () => {
+        if (inverted) {
+            if (active) {
+                return `${borderWidth}px solid ${color.active}`;
+            }
+            return `${borderWidth}px solid ${color.background}`;
+        }
+        return 'none';
+    };
+
+    const hoverBackground = () => {
+        if (isMinimal) {
+            return color.text;
+        }
+        if (loading) {
+            return color.background;
+        }
+        return color.hover;
+    };
+
+    const hoverColor = () => {
+        if (isMinimal) {
+            return color.hover;
+        }
+    };
+
+    const hoverBorder = () => {
+        if (inverted && !loading) {
+            return `${borderWidth}px solid ${color.hover}`;
+        }
+        if (inverted && loading) {
+            return `${borderWidth}px solid ${color.background}`;
+        }
+        return 'none';
+    };
+
+    const activeBackground = () => {
+        if (isMinimal) {
+            return color.text;
+        }
+        if (loading) {
+            return color.background;
+        }
+        return color.active;
+    };
+
+    const activeBorder = () => {
+        if (inverted) {
+            return `${borderWidth}px solid ${color.active}`;
+        }
+        return 'none';
+    };
 
     return (
         <button
-        onClick={onClick}
-        disabled={disabled}
-        css={css`
+            onClick={onClick}
+            disabled={disabled}
+            css={css`
             position: relative;
-            padding: 8px 16px;
-            background-color: ${color};
-            opacity: 1;
-            color: ${textColor};
+            box-sizing: border-box;
+            padding: ${inverted ?
+                    `${hPadding - borderWidth}px ${vPadding - borderWidth}px` :
+                    `${hPadding}px ${vPadding}px`};
+            border: ${baseBorder()};
+            background-color: ${baseBackground()};
+            color: ${baseColor()};
+
             font-size: 24px;
-            border: none;
-            border-radius: 4px;
+
             &:focus {
                 outline: none;
             }
-            &:active {
+
+            &:active:not(:disabled) {
                 outline: none;
-                border: none;
-                filter: ${loading ? 'none' : 'contrast(150%)'};
-                transform: ${shouldNotTransform ? 'none' : 'scale3d(1.03, 1.03, 1)'};
+                background-color: ${activeBackground()};
+                color: ${isMinimal ? color.active : color.text};
+                border: ${activeBorder()};
             }
-            &:hover {
-                cursor: ${cursor};
+
+            &:hover:not(:disabled):not(:active) {
+                cursor: ${loading ? 'default' : 'pointer'};
+                background-color: ${hoverBackground()};
+                color: ${hoverColor()};
+                border: ${hoverBorder()};
             }
+
             &:disabled {
-                filter: contrast(80%);
                 cursor: default;
+                color: ${isMinimal ? color.disabled : color.text};
+                border: ${inverted ? `${borderWidth}px solid ${color.disabled}` : 'none'};
+                background-color: ${isMinimal ? color.text : color.disabled};
             }
         `}
-    >
-        <span
-            css={css`
-               visibility: ${textVisibility};
-            `}
         >
-            {children}
-        </span>
-        {loading && <Loader color={textColor} inline />}
-    </button>
+            <span
+                css={css`
+               visibility: ${loading ? 'hidden' : 'visible'};
+            `}
+            >
+                {children}
+            </span>
+            {loading ? <Loader color={isMinimal ? color.background : color.text} inline /> : null}
+        </button>
     );
 };
 

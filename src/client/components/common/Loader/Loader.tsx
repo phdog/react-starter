@@ -10,12 +10,14 @@ interface ILoader {
 
 const Loader: React.SFC<ILoader> = ({ color, inline = false }) => {
 
+  const colorStyle = css`background: ${color};`;
+
   if (inline) {
     return (
       <div className={styles['loader-dots']}>
-        <div className={styles['loader-dot']} css={css`background: ${color};`}></div>
-        <div className={styles['loader-dot']} css={css`background: ${color};`}></div>
-        <div className={styles['loader-dot']} css={css`background: ${color};`}></div>
+        <div className={styles['loader-dot']} css={colorStyle}></div>
+        <div className={styles['loader-dot']} css={colorStyle}></div>
+        <div className={styles['loader-dot']} css={colorStyle}></div>
       </div>
     );
   }
@@ -23,9 +25,9 @@ const Loader: React.SFC<ILoader> = ({ color, inline = false }) => {
   return (
     <div className={styles.loader}>
       <div className={styles['loader-dots']}>
-        <div className={styles['loader-dot']} css={css`background: ${color};`}></div>
-        <div className={styles['loader-dot']} css={css`background: ${color};`}></div>
-        <div className={styles['loader-dot']} css={css`background: ${color};`}></div>
+        <div className={styles['loader-dot']} css={colorStyle}></div>
+        <div className={styles['loader-dot']} css={colorStyle}></div>
+        <div className={styles['loader-dot']} css={colorStyle}></div>
       </div>
     </div>
   );
