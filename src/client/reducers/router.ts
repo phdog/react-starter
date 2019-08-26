@@ -1,7 +1,7 @@
 import {takeLast} from 'ramda';
 import {LOCATION_CHANGE} from 'connected-react-router';
 
-const initialState = [];
+const initialState: Array<any> = [];
 
 const router = (state = initialState, action) => {
   switch (action.type) {
